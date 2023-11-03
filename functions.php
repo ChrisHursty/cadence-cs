@@ -228,31 +228,10 @@ function theme_customizer_register( $wp_customize ) {
 
     // Add a new section for global CTA
     $wp_customize->add_section( 'cta_section', array(
-        'title'       => __( 'Call To Acton', 'understrap-child' ),
+        'title'       => __( 'Call To Action', 'understrap-child' ),
         'description' => __( 'Global CTA Section', 'understrap-child' ),
         'priority'    => 35,
     ) );
-
-    // Add setting and control for (optional) BG Image
-    $wp_customize->add_setting( 'cta_img' , array(
-        'title'       => __( 'CTA BG Image', 'understrap-child' ),
-        'description' => __( '(Optional) Background Image for the Call To Action', 'understrap-child' ),
-        'priority'    => 1,
-        'default'     => '', 
-    ) );
-
-    $wp_customize->add_control(
-        new WP_Customize_Image_Control(
-            $wp_customize,
-            'cta_img',
-            array(
-                'label'      => __( 'CTA BG Image', 'understrap-child' ),
-                'section'    => 'cta_section',
-                'settings'   => 'cta_img' 
-            )
-        )
-    );
-
 
     // Add settings for the editable content
     $wp_customize->add_setting( 'cta_heading', array(
@@ -301,7 +280,7 @@ function theme_customizer_register( $wp_customize ) {
     ) );
 
     // Add setting and control for overlay color
-    $wp_customize->add_setting( 'cta_overlay_color', array(
+    $wp_customize->add_setting( 'cta_bg_color', array(
         'default'           => '#000000',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
@@ -309,31 +288,64 @@ function theme_customizer_register( $wp_customize ) {
     $wp_customize->add_control(
         new WP_Customize_Color_Control(
             $wp_customize,
-            'cta_overlay_color',
+            'cta_bg_color',
             array(
-                'label'       => __( 'Overlay Color', 'understrap-child' ),
+                'label'       => __( 'Background Color', 'understrap-child' ),
                 'section'     => 'cta_section',
             )
         )
     );
 
-    // Add setting and control for overlay opacity
-    $wp_customize->add_setting( 'cta_overlay_opacity', array(
-        'default'           => '0.5',
-        'sanitize_callback' => 'understrap_child_sanitize_float',
+    // Add setting and control for text color
+    $wp_customize->add_setting( 'cta_text_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'postMessage',
     ));
-    $wp_customize->add_control( 'cta_overlay_opacity', array(
-        'type'        => 'range',
-        'priority'    => 10,
-        'section'     => 'cta_section',
-        'label'       => __( 'Overlay Opacity', 'understrap-child' ),
-        'input_attrs' => array(
-            'min'   => 0,
-            'max'   => 1,
-            'step'  => 0.1,
-        ),
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'cta_text_color',
+            array(
+                'label'       => __( 'Text Color', 'understrap-child' ),
+                'section'     => 'cta_section',
+            )
+        )
+    );
+
+    // Add setting and control for button bg color
+    $wp_customize->add_setting( 'cta_button_bg_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
     ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'cta_button_bg_color',
+            array(
+                'label'       => __( 'Button BG Color', 'understrap-child' ),
+                'section'     => 'cta_section',
+            )
+        )
+    );
+
+    // Add setting and control for button text color
+    $wp_customize->add_setting( 'cta_button_text_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'cta_button_text_color',
+            array(
+                'label'       => __( 'Button Text Color', 'understrap-child' ),
+                'section'     => 'cta_section',
+            )
+        )
+    );
 }
 add_action( 'customize_register', 'theme_customizer_register' );
 
