@@ -478,7 +478,7 @@ function ccs_custom_css() {
     $cta_btn_bg_color     = get_theme_mod('cta_button_bg_color');
     $cta_btn_text_color   = get_theme_mod('cta_button_text_color');
     // ... any other theme_mod values
-
+    // TODO: Figure out why hover color isn't working
     $custom_css = "
         /* Customizer CSS */
         .cta-button:hover {
