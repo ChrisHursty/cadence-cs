@@ -15081,7 +15081,12 @@ section.hero .container h1, section.hero .container .h1 {
   text-transform: uppercase;
   color: #eb4e08;
   background-color: #fff;
+  transition: background-color 0.5s ease;
   border: none;
+}
+.home .home-page-hero .hero-button:hover,
+.page-template-page-home-page-sections .home-page-hero .hero-button:hover {
+  background-color: #ddd;
 }
 
 .hp-grid .row > * {
@@ -15152,6 +15157,16 @@ section.hero .container h1, section.hero .container .h1 {
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
+  transition: background-color 0.5s ease;
+}
+.cta .cta-button span {
+  transition: color 0.5s ease;
+}
+
+footer .byline h5, footer .byline .h5 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
 }
 
 .services-sub-heading {

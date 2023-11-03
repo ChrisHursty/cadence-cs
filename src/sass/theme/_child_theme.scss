@@ -121,7 +121,12 @@ section.hero {
             text-transform: uppercase;
             color: $orange;
             background-color: $white;
+            transition: background-color 0.5s ease;
             border: none;
+
+            &:hover {
+                background-color: #ddd;
+            }
         }
     }
 }
@@ -198,6 +203,22 @@ section.hero {
         font-size: 16px;
         text-decoration: none;
         text-transform: uppercase;
+        transition: background-color 0.5s ease;
+
+        span {
+            transition: color 0.5s ease;
+        }
+    }
+}
+
+// Footer
+footer {
+    .byline {
+        h5 {
+            font-size: 1rem;
+            font-style: italic;
+            font-weight: 400;
+        }
     }
 }
 

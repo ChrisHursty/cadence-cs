@@ -45,8 +45,24 @@ function theme_enqueue_styles() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+    // Font Awesome
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
+
+
+function ccs_enqueue_customizer_scripts() {
+    wp_enqueue_script(
+        'ccs-customizer-script',
+        get_stylesheet_directory_uri() . '/js/ccs-customizer.js',
+        array( 'jquery', 'customize-controls' ),
+        false,
+        true
+    );
+}
+add_action( 'customize_controls_enqueue_scripts', 'ccs_enqueue_customizer_scripts' );
+
 
 /**
  * Load the child theme's text domain
@@ -346,8 +362,138 @@ function theme_customizer_register( $wp_customize ) {
             )
         )
     );
+
+    // Custom Footer
+    // Add CCS Footer Section
+    $wp_customize->add_section( 'ccs_footer', array(
+        'title'    => __( 'CCS Footer', 'understrap-child' ),
+        'priority' => 40, // After Additional CSS
+    ));
+
+    // Footer BG Color
+    $wp_customize->add_setting( 'footer_bg_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'footer_bg_color',
+            array(
+                'label'       => __( 'Footer BG Color', 'understrap-child' ),
+                'section'     => 'ccs_footer',
+            )
+        )
+    );
+
+    // Image Upload Setting
+    $wp_customize->add_setting( 'ccs_footer_image' );
+    $wp_customize->add_control( new WP_Customize_Image_Control(
+        $wp_customize,
+        'ccs_footer_image',
+        array(
+            'label'    => __( 'Footer Image', 'understrap-child' ),
+            'section'  => 'ccs_footer',
+            'settings' => 'ccs_footer_image',
+        )
+    ));
+
+    // Text Field Setting
+    $wp_customize->add_setting( 'ccs_footer_text', array(
+        'default' => '',
+    ));
+    $wp_customize->add_control( 'ccs_footer_text', array(
+        'label'    => __( 'Footer Text', 'understrap-child' ),
+        'section'  => 'ccs_footer',
+        'type'     => 'text',
+    ));
+
+    // Text Color
+    $wp_customize->add_setting( 'footer_text_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'footer_text_color',
+            array(
+                'label'       => __( 'Footer Text Color', 'understrap-child' ),
+                'section'     => 'ccs_footer',
+            )
+        )
+    );
+
+    class CCS_Social_Media_Control extends WP_Customize_Control {
+        public function render_content() {
+            $icons = json_decode($this->value(), true);
+            ?>
+            <label>
+                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+            </label>
+            <div class="ccs-social-media-icons">
+                <ul id="ccs-icons-list">
+                    <?php
+                    if ($icons) {
+                        foreach ($icons as $icon) {
+                            ?>
+                            <li>
+                                <img src="<?php echo esc_url($icon['imageUrl']); ?>" class="icon-image" />
+                                <input type="hidden" value="<?php echo esc_url($icon['imageUrl']); ?>" class="icon-image-url" />
+                                <input type="url" value="<?php echo esc_url($icon['url']); ?>" placeholder="URL" class="icon-url" />
+                                <button type="button" class="button ccs-remove-icon-button">Remove</button>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+                </ul>
+                <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr($this->value()); ?>" />
+                <button type="button" class="button ccs-add-icon-button">Add Icon</button>
+            </div>
+    
+            <!-- The script will go here -->
+            <?php
+        }
+    }
+    
+    // Register the custom control in your ccs_customizer_settings function
+    $wp_customize->add_setting( 'ccs_social_media_icons' );
+    $wp_customize->add_control( new CCS_Social_Media_Control(
+        $wp_customize,
+        'ccs_social_media_icons',
+        array(
+            'label'    => __( 'Social Media Icons', 'understrap-child' ),
+            'section'  => 'ccs_footer',
+            'settings' => 'ccs_social_media_icons',
+        )
+    ));
+    
 }
 add_action( 'customize_register', 'theme_customizer_register' );
+
+function ccs_custom_css() {
+    $cta_btn_bg_color     = get_theme_mod('cta_button_bg_color');
+    $cta_btn_text_color   = get_theme_mod('cta_button_text_color');
+    // ... any other theme_mod values
+
+    $custom_css = "
+        /* Customizer CSS */
+        .cta-button:hover {
+            background-color: url({$cta_btn_text_color});
+        }
+        .cta-button:hover span {
+            color: {$cta_btn_bg_color};
+        }
+        /* ... any other custom CSS */
+    ";
+
+    wp_add_inline_style( 'your-theme-style-handle', $custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'ccs_custom_css', 20 );
+
 
 // Sanitize float value
 function understrap_child_sanitize_float( $input ) {
