@@ -1,0 +1,211 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+// Main Nav
+header#wrapper-navbar {
+    background-color: $dark-grey;
+}
+
+article {
+    margin: 20px 0;
+}
+
+// Remove default padding
+.wrapper {
+    padding: 0;
+}
+
+// Hero Featured Image for all pages
+section.hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            color: $white;
+            font-size: 4.5rem;
+            text-align: center;
+            text-transform: capitalize;
+        }
+    }
+}
+
+// Home Page
+.home,
+.page-template-page-home-page-sections {
+    .wrapper {
+        padding: 0;
+    }
+
+    .home-page-hero {
+        height: 600px;
+        overflow: hidden;
+
+        #hero {
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            height: 600px;
+
+            .video-overlay {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 0;
+            }
+            
+            video {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                z-index: -100;
+                transform: translateX(-50%) translateY(-50%);
+                background-size: cover;
+                transition: 1s opacity;
+            }
+        }
+        
+        #hero-content {
+            position: relative;
+            width: 60%;
+            z-index: 1;
+
+            h1 {
+                color: $white;
+                font-size: 4.5rem;
+                text-transform: capitalize;
+            }
+
+            .text-area {
+                margin: 20px 0;
+                width: 60%;
+                p {
+                    font-size: 1.4rem;
+                    line-height: 1.4;
+                }
+            }
+
+            
+        }
+        
+        .hero-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $orange;
+            background-color: $white;
+            border: none;
+        }
+    }
+}
+
+.hp-grid {
+    .row>* {
+        padding: 0 !important;
+    }
+}
+
+.hp-image-left {
+    text-align: right;
+}
+
+.hp-text-left .text-holder {
+    margin-right: 30px;
+    margin-left: 90px;
+    text-align: right;
+}
+
+.hp-image-right {
+    text-align: left;
+}
+
+.hp-text-right .text-holder {
+    margin-left: 30px;
+    margin-right: 90px;
+}
+
+.hp-text-left .text-holder h4,
+.hp-text-right .text-holder h4 {
+    font-size: 3rem;
+}
+
+.custom-page-h2,
+.centered-text {
+    background-color: #333;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.custom-page-h2 h2,
+.centered-text h2 {
+    font-size: 3.4rem;
+}
+
+//CTA
+.cta {
+    position: relative;
+    z-index: -10;
+    
+    .overlay-color {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -5;
+    }
+
+    .cta-heading {
+        font-size: 3.4rem;
+        text-align: center;
+    }
+}
+
+// Services Page
+.services-sub-heading {
+    background-color: $dark-grey;
+    padding: 30px 0;
+    text-align: center;
+
+    h2 {
+        color: $white;
+        font-size: 3.5em;
+    }
+}
+.services {
+    .icon-column {
+        margin-top: 40px;
+    }
+    .icon,
+    h4 {
+        margin-bottom: 20px;
+    }
+}
