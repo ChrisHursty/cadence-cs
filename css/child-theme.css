@@ -15071,22 +15071,42 @@ section.hero .container h1, section.hero .container .h1 {
   font-size: 1.4rem;
   line-height: 1.4;
 }
-.home .home-page-hero .hero-button,
-.page-template-page-home-page-sections .home-page-hero .hero-button {
+
+.nav-btn,
+.hero-button,
+.cta-button {
   display: inline-block;
   padding: 10px 20px;
   font-weight: 700;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
-  color: #eb4e08;
-  background-color: #fff;
   transition: background-color 0.5s ease;
-  border: none;
 }
-.home .home-page-hero .hero-button:hover,
-.page-template-page-home-page-sections .home-page-hero .hero-button:hover {
-  background-color: #ddd;
+.nav-btn span,
+.hero-button span,
+.cta-button span {
+  transition: color 0.5s ease;
+}
+
+.nav-btn {
+  background-color: #eb4e08;
+  transition: background-color 0.5s ease;
+}
+.nav-btn:hover {
+  background-color: #fff;
+}
+.nav-btn:hover a {
+  color: #eb4e08;
+}
+.nav-btn a {
+  color: #fff;
+  font-weight: 700;
+  padding: 0;
+}
+
+.cta-button {
+  padding: 10px 30px;
 }
 
 .hp-grid .row > * {
@@ -15147,20 +15167,6 @@ section.hero .container h1, section.hero .container .h1 {
 }
 .cta .text-area {
   text-align: center;
-}
-.cta .cta-button {
-  border: none;
-  display: inline-block;
-  margin: 20px auto 0;
-  padding: 10px 30px;
-  font-weight: 700;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 0.5s ease;
-}
-.cta .cta-button span {
-  transition: color 0.5s ease;
 }
 
 footer .byline h5, footer .byline .h5 {

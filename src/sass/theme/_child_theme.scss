@@ -111,24 +111,46 @@ section.hero {
 
             
         }
-        
-        .hero-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            text-transform: uppercase;
-            color: $orange;
-            background-color: $white;
-            transition: background-color 0.5s ease;
-            border: none;
+    }
+}
 
-            &:hover {
-                background-color: #ddd;
-            }
+.nav-btn,
+.hero-button,
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.5s ease;
+
+    span {
+        transition: color 0.5s ease;
+    }
+}
+
+.nav-btn {
+    background-color: $orange;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+        background-color: $white;
+
+        a {
+            color: $orange;
         }
     }
+
+    a {
+        color: $white;
+        font-weight: 700;
+        padding: 0;
+    }
+}
+
+.cta-button {
+    padding: 10px 30px;
 }
 
 .hp-grid {
@@ -192,22 +214,6 @@ section.hero {
 
     .text-area {
         text-align: center;
-    }
-
-    .cta-button {
-        border: none;
-        display: inline-block;
-        margin: 20px auto 0;
-        padding: 10px 30px;
-        font-weight: 700;
-        font-size: 16px;
-        text-decoration: none;
-        text-transform: uppercase;
-        transition: background-color 0.5s ease;
-
-        span {
-            transition: color 0.5s ease;
-        }
     }
 }
 

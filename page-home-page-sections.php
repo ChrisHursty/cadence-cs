@@ -18,10 +18,10 @@ get_header();
 <div class="wrapper home-page-hero">
 
     <?php
-    $heading     = get_theme_mod( 'hero_area_heading' );
-    $text        = get_theme_mod( 'hero_area_text' );
-    $button_text = get_theme_mod( 'hero_area_button_text' );
-    $button_link = get_theme_mod( 'hero_area_button_link' );
+    $hero_heading     = get_theme_mod( 'hero_area_heading' );
+    $hero_text        = get_theme_mod( 'hero_area_text' );
+    $hero_button_text = get_theme_mod( 'hero_area_button_text' );
+    $hero_button_link = get_theme_mod( 'hero_area_button_link' );
     ?>
     
     <section id="hero">
@@ -32,18 +32,18 @@ get_header();
         </video>
 
         <div id="hero-content" class="container">
-            <?php if ( $heading ) : ?>
-                <h1><?php echo esc_html( $heading ); ?></h1>
+            <?php if ( $hero_heading ) : ?>
+                <h1><?php echo esc_html( $hero_heading ); ?></h1>
             <?php endif; ?>
 
-            <?php if ( $text ) : ?>
+            <?php if ( $hero_text ) : ?>
                 <div class="text-area">
-                    <p><?php echo esc_html( $text ); ?></p>
+                    <p><?php echo esc_html( $hero_text ); ?></p>
                 </div>
             <?php endif; ?>
 
-            <?php if ( $button_text && $button_link ) : ?>
-                <a href="<?php echo esc_url( $button_link ); ?>" class="hero-button"><?php echo esc_html( $button_text ); ?></a>
+            <?php if ( $hero_button_text && $hero_button_link ) : ?>
+                <a href="<?php echo esc_url( $hero_button_link ); ?>" class="hero-button"><span><?php echo esc_html( $hero_button_text ); ?></span></a>
             <?php endif; ?>
         </div>
     </section>

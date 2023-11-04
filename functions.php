@@ -207,6 +207,40 @@ function theme_customizer_register( $wp_customize ) {
         'type' => 'url',
     ) );
 
+    // Add setting and control for hero button bg color
+    $wp_customize->add_setting( 'hero_button_bg_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'hero_button_bg_color',
+            array(
+                'label'       => __( 'Button BG Color', 'understrap-child' ),
+                'section'     => 'hero_area_section',
+            )
+        )
+    );
+
+    // Add setting and control for button text color
+    $wp_customize->add_setting( 'hero_button_text_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'hero_button_text_color',
+            array(
+                'label'       => __( 'Button Text Color', 'understrap-child' ),
+                'section'     => 'hero_area_section',
+            )
+        )
+    );
+
     // Add setting and control for overlay color
     $wp_customize->add_setting( 'overlay_color', array(
         'default'           => '#000000',
@@ -295,7 +329,7 @@ function theme_customizer_register( $wp_customize ) {
         'type' => 'url',
     ) );
 
-    // Add setting and control for overlay color
+    // Add setting and control for BG color
     $wp_customize->add_setting( 'cta_bg_color', array(
         'default'           => '#000000',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -475,25 +509,54 @@ function theme_customizer_register( $wp_customize ) {
 add_action( 'customize_register', 'theme_customizer_register' );
 
 function ccs_custom_css() {
-    $cta_btn_bg_color     = get_theme_mod('cta_button_bg_color');
-    $cta_btn_text_color   = get_theme_mod('cta_button_text_color');
+    $hero_btn_bg_color   = get_theme_mod('hero_button_bg_color');
+    $hero_btn_text_color = get_theme_mod('hero_button_text_color');
+    $cta_btn_bg_color    = get_theme_mod('cta_button_bg_color');
+    $cta_btn_text_color  = get_theme_mod('cta_button_text_color');
     // ... any other theme_mod values
-    // TODO: Figure out why hover color isn't working
+   
     $custom_css = "
         /* Customizer CSS */
+        .hero-button {
+            background-color: $hero_btn_bg_color !important;
+            border: 1px solid $hero_btn_bg_color !important;
+        }
+
+        .hero-button span {
+            color: $hero_btn_text_color !important;
+        }
+
+        .hero-button:hover {
+            background-color: $hero_btn_text_color !important;
+            border: 1px solid $hero_btn_text_color !important;
+        }
+
+        .hero-button:hover span {
+            color: $hero_btn_bg_color !important;
+        }
+
+        .cta-button {
+            border: 1px solid $cta_btn_text_color !important;
+        }
+
         .cta-button:hover {
-            background-color: url({$cta_btn_text_color});
+            background-color: $cta_btn_text_color !important;
+            border: 1px solid $cta_btn_bg_color !important;
         }
         .cta-button:hover span {
-            color: {$cta_btn_bg_color};
+            color: $cta_btn_bg_color !important;
         }
         /* ... any other custom CSS */
     ";
 
-    wp_add_inline_style( 'your-theme-style-handle', $custom_css );
+    wp_add_inline_style( 'ccs-customizer-css', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'ccs_custom_css', 20 );
 
+function ccs_enqueue_scripts_and_styles() {
+    wp_enqueue_style( 'ccs-customizer-css', get_stylesheet_uri() );
+}
+add_action( 'wp_enqueue_scripts', 'ccs_enqueue_scripts_and_styles' );
 
 // Sanitize float value
 function understrap_child_sanitize_float( $input ) {
