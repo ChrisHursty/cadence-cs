@@ -15194,6 +15194,27 @@ footer .byline h5, footer .byline .h5 {
   margin-bottom: 20px;
 }
 
+/* Define the breakpoint */
+@media (min-width: 768px) and (max-width: 1199px) {
+  h1, .h1 {
+    font-size: clamp(1.5rem, 2vw, 2rem) !important; /* max-size: 2rem */
+  }
+  h2, .h2 {
+    font-size: clamp(1.375rem, 1.8vw, 1.75rem) !important; /* Scaled down from h1 */
+  }
+  h3, .h3 {
+    font-size: clamp(1.25rem, 1.6vw, 1.5rem) !important; /* Scaled down from h2 */
+  }
+  h4, .h4 {
+    font-size: clamp(1.125rem, 1.4vw, 1.25rem) !important; /* Scaled down from h3 */
+  }
+  h5, .h5 {
+    font-size: clamp(1rem, 1.2vw, 1rem) !important; /* Scaled down from h4 */
+  }
+  h6, .h6 {
+    font-size: clamp(0.875rem, 1vw, 0.875rem) !important; /* Scaled down from h5 */
+  }
+}
 .has-blue-color,
 .has-blue-color:visited {
   color: #0d6efd;
