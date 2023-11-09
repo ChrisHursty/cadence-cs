@@ -53,12 +53,12 @@ get_header();
         <h2 class=""><?php the_field('centered_text'); ?></h2>
     </div>
 </div>
-<div class="container-md" id="content" tabindex="-1">
+<div class="container" id="content" tabindex="-1">
     <div class="row">
         <?php
             // Check value exists.
             if( have_rows('flexible_content') ): ?>
-            <div class="container-md hp-grid">
+            <div class="container hp-grid">
                 <?php // Loop through rows.
                 while ( have_rows('flexible_content') ) : the_row(); ?>
                     <div class="row bottom-border">
@@ -66,10 +66,10 @@ get_header();
                         if( get_row_layout() == 'image_text' ):
                             $image = get_sub_field( 'image' );
                             $text  = get_sub_field('text'); ?>
-                            <div class="col hp-image-left">
+                            <div class="col-md-6 col-sm-12 hp-image-left">
                                 <img src="<?php echo $image;?>" alt="">
                             </div>
-                            <div class="col align-self-center hp-text-right">
+                            <div class="col-md-6 col-sm-12 align-self-center hp-text-right">
                                 <div class="text-holder">
                                     <?php echo $text; ?>
                                 </div>
@@ -78,13 +78,15 @@ get_header();
                         elseif( get_row_layout() == 'text_image' ):
                             $image = get_sub_field( 'image' );
                             $text = get_sub_field('text'); ?>
-                            <div class="col align-self-center hp-text-left">
-                                <div class="text-holder">
-                                    <?php echo $text; ?>
+                            <div class="reverse-cols">
+                                <div class="col-md-6 col-sm-12 align-self-center hp-text-left">
+                                    <div class="text-holder">
+                                        <?php echo $text; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col hp-image-right">
-                                <img src="<?php echo $image;?>" alt="">
+                                <div class="col-md-6 col-sm-12 hp-image-right">
+                                    <img src="<?php echo $image;?>" alt="">
+                                </div>
                             </div>
                             <?php
                             
