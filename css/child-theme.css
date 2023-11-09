@@ -14987,6 +14987,38 @@ article {
   padding: 0;
 }
 
+.page-template-page-members-only header,
+.page-template-page-members-only footer {
+  display: none;
+}
+
+#members-only {
+  background-color: #2c2c2c;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#members-only .mo-btn {
+  background-color: #eb4e08;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease;
+}
+#members-only .mo-btn span {
+  transition: color 0.5s ease;
+}
+#members-only .mo-btn:hover {
+  background-color: #fff;
+  color: #eb4e08;
+}
+
 section.hero {
   background-repeat: no-repeat;
   background-size: cover;

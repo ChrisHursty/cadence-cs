@@ -23,6 +23,46 @@ article {
     padding: 0;
 }
 
+.page-template-page-members-only {
+    header,
+    footer {
+        display: none;
+    }
+}
+
+#members-only {
+    background-color: $dark-grey;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .mo-btn {
+        background-color: $orange;
+        color: $white;
+        display: inline-block;
+        padding: 10px 20px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 40px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 0.5s ease;
+    
+        span {
+            transition: color 0.5s ease;
+        }
+
+        &:hover {
+            background-color: $white;
+            color: $orange;
+        }
+    }
+
+    
+    
+}
+
 // Hero Featured Image for all pages
 section.hero {
     background-repeat: no-repeat;
